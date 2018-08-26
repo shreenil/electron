@@ -59,7 +59,12 @@ describe('security warnings', () => {
   })
 
   it('should warn about Node.js integration with remote content', (done) => {
-    w = new BrowserWindow({ show: false })
+    w = new BrowserWindow({
+      show: false,
+      webPreferences: {
+        enableRemoteModule: false
+      }
+    })
     w.webContents.once('console-message', (e, level, message) => {
       assert(message.includes('Node.js Integration with Remote Content'), message)
       done()
@@ -72,6 +77,7 @@ describe('security warnings', () => {
     w = new BrowserWindow({
       show: false,
       webPreferences: {
+        enableRemoteModule: false,
         webSecurity: false,
         nodeIntegration: false
       }
@@ -104,6 +110,7 @@ describe('security warnings', () => {
     w = new BrowserWindow({
       show: false,
       webPreferences: {
+        enableRemoteModule: false,
         nodeIntegration: false
       }
     })
@@ -138,6 +145,7 @@ describe('security warnings', () => {
     w = new BrowserWindow({
       show: false,
       webPreferences: {
+        enableRemoteModule: false,
         allowRunningInsecureContent: true,
         nodeIntegration: false
       }
@@ -170,6 +178,7 @@ describe('security warnings', () => {
     w = new BrowserWindow({
       show: false,
       webPreferences: {
+        enableRemoteModule: false,
         experimentalFeatures: true,
         nodeIntegration: false
       }
@@ -202,6 +211,7 @@ describe('security warnings', () => {
     w = new BrowserWindow({
       show: false,
       webPreferences: {
+        enableRemoteModule: false,
         enableBlinkFeatures: ['my-cool-feature'],
         nodeIntegration: false
       }
@@ -234,6 +244,7 @@ describe('security warnings', () => {
     w = new BrowserWindow({
       show: false,
       webPreferences: {
+        enableRemoteModule: false,
         nodeIntegration: false
       }
     })
@@ -264,6 +275,7 @@ describe('security warnings', () => {
     w = new BrowserWindow({
       show: false,
       webPreferences: {
+        enableRemoteModule: false,
         nodeIntegration: false
       }
     })
