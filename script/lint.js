@@ -83,7 +83,7 @@ const LINTERS = [ {
   run: (opts, filenames) => {
     const cmd = path.join(SOURCE_ROOT, 'node_modules', '.bin', 'eslint')
     const args = [ '--cache', ...filenames ]
-    if (opts.fix) args.unshift('--fix')
+    args.unshift('--fix')
     spawnAndCheckExitCode(cmd, args, { cwd: SOURCE_ROOT })
   }
 }]
