@@ -8,6 +8,7 @@
     "object-shorthand": ["error", "always"],
     "prefer-const": ["error", {
       "destructuring": "all"
-    }]
+    }],
+    "prefer-spread": "error"
   }
 }
