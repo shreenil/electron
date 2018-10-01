@@ -45,6 +45,12 @@ jobs:
       CIRCLE_TOKEN: $(CIRCLECI_TOKEN)
 
   - bash: |
+      sh -e /etc/init.d/xvfb start
+    displayName: Setup for headless testing
+    env:
+      DISPLAY: 99.0
+
+  - bash: |
      cd src
      export ELECTRON_OUT_DIR=Default
      (cd electron && npm run test -- --ci --enable-logging)
