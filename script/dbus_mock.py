@@ -10,11 +10,14 @@ from dbusmock import DBusTestCase
 from lib.config import is_verbose_mode
 
 def stop():
+    print('In dbus_mock stop')
     DBusTestCase.stop_dbus(DBusTestCase.system_bus_pid)
+    print('In dbus_mock stop, stopped system bus')
     DBusTestCase.stop_dbus(DBusTestCase.session_bus_pid)
+    print('In dbus_mock stop, stopped session bus')
 
 def start():
-    log = sys.stdout if is_verbose_mode() else open(os.devnull, 'w')
+    log = sys.stdout
 
     DBusTestCase.start_system_bus()
     DBusTestCase.spawn_server_template('logind', None, log)
@@ -25,6 +28,8 @@ def start():
 if __name__ == '__main__':
     start()
     try:
+        print 'About to call '+ sys.argv
         subprocess.check_call(sys.argv[1:])
+        print 'Done calling ' + sys.argv
     finally:
         stop()
