@@ -213,7 +213,7 @@ describe('node feature', () => {
       if (child !== null) child.kill()
     })
 
-    it('supports starting the v8 inspector with --inspect/--inspect-brk', (done) => {
+    it.only('supports starting the v8 inspector with --inspect/--inspect-brk', (done) => {
       child = ChildProcess.spawn(process.execPath, ['--inspect-brk', path.join(__dirname, 'fixtures', 'module', 'run-as-node.js')], {
         env: {
           ELECTRON_RUN_AS_NODE: true
@@ -223,10 +223,12 @@ describe('node feature', () => {
       let output = ''
       child.stderr.on('data', (data) => {
         output += data
+        console.log('Output: ' + output.trim())
         if (output.trim().startsWith('Debugger listening on ws://')) done()
       })
 
       child.stdout.on('data', (data) => {
+        console.log('Error: ' + data.toString())
         done(new Error(`Unexpected output: ${data.toString()}`))
       })
     })
